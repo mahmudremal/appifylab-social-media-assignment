@@ -3,7 +3,8 @@ const { PrismaBetterSqlite3 } = require('@prisma/adapter-better-sqlite3');
 const Database = require('better-sqlite3');
 const path = require('path');
 
-const dbPath = path.join(__dirname, '..', 'database.db');
+// Use process.cwd() to ensure it points to the backend root directory
+const dbPath = path.resolve(process.cwd(), 'database.db');
 const adapter = new PrismaBetterSqlite3({ url: `file:${dbPath}` });
 const prisma = new PrismaClient({ adapter });
 
